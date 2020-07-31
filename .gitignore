@@ -1,2 +1,5 @@
 # ccls cache directories
 */.ccls*/**
+
+# emacs temporary backup files
+*~
