@@ -1,0 +1,14 @@
+#include <vector>
+
+class TreeAncestor {
+public:
+  std::vector<std::vector<int>> parents;
+  
+  TreeAncestor(int n, std::vector<int>& parent) {
+    
+  }
+    
+  int getKthAncestor(int node, int k) {
+    
+  }
+};

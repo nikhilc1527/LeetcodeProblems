@@ -1,0 +1,8 @@
+#include <vector>
+
+class Solution {
+public:
+  bool validateBinaryTreeNodes(int n, std::vector<int>& leftChild, std::vector<int>& rightChild) {
+        
+    }
+};

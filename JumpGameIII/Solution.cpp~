@@ -1,0 +1,12 @@
+#include <vector>
+
+class Solution {
+public:
+  bool canReach(std::vector<int>& arr, int start) {
+    std::vector<bool> memo(arr.size(), false);
+    auto l = [&memo](int i, auto &l) -> bool{
+               
+             };
+    return l(start, l);
+  }
+};

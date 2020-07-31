@@ -1,0 +1,16 @@
+#include <vector>
+#include <string>
+#include <unordered_set>
+#include <string_view>
+
+class Solution {
+public:
+  std::vector<std::string> findRepeatedDnaSequences(std::string s) {
+    std::unordered_set<std::string_view> seen;
+    for (int i = 0; i < s.size() - 10; i++) {
+      if (seen.count(s.substr(i, 10n))) {
+        
+      }
+    }
+  }
+};

@@ -1,0 +1,72 @@
+#include <vector>
+#include <string>
+#include <unordered_set>
+#include <string_view>
+#include <iostream>
+#include <unordered_map>
+
+class Solution {
+public:
+  std::vector<std::string> wordBreak(std::string_view s, std::vector<std::string>& wordDict) {
+    using ret_type = std::vector<std::string>;
+    
+    std::unordered_set<std::string_view> words;
+    for (auto &i : wordDict) {
+      words.insert(i);
+    }
+
+    std::unordered_map<int, std::vector<std::string>> memo;
+    
+    auto l = [s, &words, &memo]() -> ret_type {
+               auto l2 = [s2 = s, &words, &memo](int idx, auto &l2) -> ret_type {
+                           if (idx >= s2.size())
+                             return {};
+                           
+                           ret_type res;
+                           if (auto memd = memo[idx]; memd.size() > 0) {
+                             for (auto &i : memd) {
+                               res.push_back(std::string(i));
+                             }
+                             return res;
+                           }
+                           auto s = s2.substr(idx, s2.size());
+                           if (words.count(s))
+                             res.push_back(std::string(s));
+                           
+                           for (int i = 0; i < s2.size() - idx; i++) {
+                             if (words.count(s2.substr(idx, i))) {
+                               auto res2 = l2(idx + i, l2);
+                               for (auto &j : res2) {
+                                 std::cout << j << std::endl;
+                                 res.push_back(std::string(s2.substr(idx, i)) + " " + j);
+                               }
+                             }
+                           }
+
+                           return memo[idx] = res;
+                         };
+               return l2(0, l2);
+             };
+    return l();
+  }
+};
+
+int main() {
+  Solution s;
+  // std::string input = "catsanddog";
+  // std::vector<std::string> wordDict = {"cat", "cats", "and", "sand", "dog"};
+  // auto res = s.wordBreak(input, wordDict);
+  // for (auto i : res) {
+  //   std::cout << i << std::endl;
+  // }
+
+  std::string input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+  std::vector<std::string> wordDict = {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
+
+  auto res = s.wordBreak(input, wordDict);
+  for (auto i : res) {
+    std::cout << i << std::endl;
+  }
+
+  return 0;
+}

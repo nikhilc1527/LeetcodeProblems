@@ -1,0 +1,56 @@
+#include <vector>
+#include <list>
+#include <iostream>
+#include <string>
+#include <unordered_set>
+#include <algorithm>
+#include <unordered_map>
+
+class Solution {
+public:
+  struct pair_hash {
+    inline std::size_t operator()(const std::pair<int,int> & v) const {
+        return v.first*31+v.second;
+    }
+};
+  bool isPathCrossing(std::string path) {
+    std::unordered_set<std::pair<int, int>, pair_hash> crossed;
+    int i = 0, j = 0;
+    crossed.insert({i, j});
+    for (unsigned int k = 0; k < path.size(); k++) {
+      if (path[k] == 'N') i++;
+      else if (path[k] == 'S') i--;
+      else if (path[k] == 'E') j++;
+      else if (path[k] == 'W') j--;
+      if (crossed.count({i, j})) return true;
+      else crossed.insert({i, j});
+    }
+
+    return false;
+  }
+
+  bool canArrange(std::vector<int>& arr, int k) {
+    std::size_t sum = 0;
+    for (auto i : arr) {
+      sum += i;
+    }
+
+    return sum % k == 0;
+  }
+
+  int numSubseq(std::vector<int>& nums, int target) {
+    if (nums.size() == 0) return 0;
+    std::sort(nums.begin(), nums.end());
+    int min = 0, max = nums.size() - 1;
+    if (nums[min] + nums[max]) 
+  }
+};
+
+int main() {
+  Solution s;
+  std::vector<int> arr = {-1, 1, -2, 2, -3, 3, -4, 4};
+  bool res = s.canArrange(arr, 3);
+  std::cout << std::endl << std::endl;
+  std::cout << std::boolalpha << res << std::endl;
+  std::cout << std::endl << std::endl;
+}

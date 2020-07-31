@@ -1,0 +1,46 @@
+// #10. Regular Expression Matching: Hard
+#include <string>
+
+class Solution {
+public:
+  bool isMatch(std::string s, std::string p) {
+    unsigned int i, j;
+    for (i = 0, j = 0; i < s.size() && j < p.size(); i++, j++) {
+      if (s[i] == '.') {
+	s[i] = p[j];
+      }
+      if (s[i] != p[j]) {
+	if (j < p.size() - 1 && p[j + 1] == '*') {
+	  p = p.substr(0, j) + p.substr(j + 2, p.size() - j - 2);
+	}
+	else return false;
+      }
+
+      else if (p[j] == '*') {
+	char prevChar = p[j-1];
+	unsigned int k;
+	for (k = j + 1; k < p.size() && p[k] == prevChar; k++);
+	unsigned int l;
+	for (l = i + 1; l < s.size() && s[l] == s[i]; l++);
+
+	if (l - j > k - i) return false;
+	else {
+	  j = l - 1;
+	  i = k - 1;
+	}
+      }
+    }
+
+    return i == s.size() && j == p.size();
+  }
+};
+
+#ifdef DEBUG
+int main() {
+  Solution s;
+  std::string expr = "aab";
+  std::string regex = "c*a*b";
+  bool res = s.isMatch(expr, regex);
+  std::cout << res << std::endl;
+}
+#endif

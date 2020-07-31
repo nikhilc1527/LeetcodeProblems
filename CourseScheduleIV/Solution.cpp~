@@ -1,0 +1,22 @@
+#include <vector>
+#include <deque>
+
+using namespace std;
+
+class Solution {
+public:
+  vector<bool> checkIfPrerequisite(int n, vector<vector<int>>& ps, vector<vector<int>>& qs) {
+    deque<int> sorted = topSort(ps, n);;
+        
+  }
+    
+  deque<int> topSort(vector<vector<int>> graph, int n) {
+    vector<bool> visited(n, false);
+    vector<vector<int>> adjList(n);
+    for (auto &edge : graph) {
+      adjList[edge[0]].push_back(edge[1]);
+    }
+  }
+
+  vector<vector<
+};

@@ -1,0 +1,16 @@
+#include <string>
+
+class CombinationIterator {
+public:
+  CombinationIterator(std::string characters, int combinationLength) {
+    
+  }
+    
+  std::string next() {
+    
+  }
+    
+  bool hasNext() {
+      
+  }
+};

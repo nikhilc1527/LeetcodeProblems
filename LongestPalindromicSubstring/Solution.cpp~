@@ -1,0 +1,29 @@
+#include <string>
+#include <algorithm>
+
+class Solution {
+public:
+  // #5. Longest Palindromic Substring (Medium)
+  std::string longestPalindrome(std::string s) {
+    std::size_t size = s.size();
+    if (!size) return "";
+    std::size_t resSize = 0, resStart;
+    std::size_t i = 0, j, k;
+    for (i = 0; i < size; i++) {
+      j = i;
+      for (; j < size - 1 && s[i] == s[j+1]; j++);
+      k = j;
+      if (std::min(i, size - 1 - j) * 2 + (j - i + 1) > resSize) {
+	for (; i > 0 && j < size - 1 && s[i - 1] == s[j + 1]; i--, j++);
+	if (j - i + 1 > resSize) {
+	  resStart = i;
+	  resSize = j - i + 1;
+	}
+      }
+
+      i = k;
+    }
+
+    return s.substr(resStart, resSize);
+  }
+};

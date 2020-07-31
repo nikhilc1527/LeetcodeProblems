@@ -1,0 +1,6 @@
+class Solution:
+    def longestValidParentheses(self, s):
+        stack = 0
+        for i in range(len(s)):
+            
+        

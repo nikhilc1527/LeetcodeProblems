@@ -1,0 +1,41 @@
+#include <vector>
+#include <climits>
+#include <fstream>
+#include <iostream>
+
+class Solution {
+public:
+  int jump(std::vector<int>& nums) {
+    int size = nums.size();
+    std::vector<int> minJumps(size);
+    minJumps[size - 1] = 0;
+
+    for (int i = size - 2; i >= 0; i--) {
+      int min = -1;
+      for (int j = 1; j <= nums[i] && i + j < size; j++) {
+        if (minJumps[i + j] < 0) continue;
+        else if (min <0) min = minJumps[i + j] + 1;
+        else min = std::min(min, minJumps[i + j] + 1);
+      }
+      minJumps[i] = min;
+    }
+
+    return minJumps[0];
+  }
+};
+
+int main(int argc, char *argv[]) {
+  std::ifstream input("input.txt");
+  std::string current;
+  std::vector<int> input_vec;
+
+  while (std::getline(input, current, ',')) {
+    input_vec.push_back(std::stoi(current));
+  }
+
+  std::cout << input_vec.size() << '\n';
+
+  std::cout << Solution().jump(input_vec) << '\n';
+
+  return 0;
+}
