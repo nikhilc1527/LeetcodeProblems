@@ -1,7 +1,0 @@
-.PHONY: build run
-
-build: Solution.cpp
-	g++ -g Solution.cpp -o out
-
-run: out
-	./out
