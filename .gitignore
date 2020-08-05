@@ -3,3 +3,9 @@
 
 # emacs temporary backup files
 *~
+
+# python caches
+*pychache*
+
+# ouptput files
+out
