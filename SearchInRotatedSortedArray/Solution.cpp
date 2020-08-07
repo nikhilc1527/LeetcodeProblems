@@ -25,7 +25,8 @@ public:
       if (jumpLen == 1 && !fin2) fin2 = true;
       else if (jumpLen == 1 && fin2) fin = true;
     }
-    if (nums[mid] == target) return i;
+    if (nums[mid] == target)
+      return mid;
     else return -1;
   }
 };

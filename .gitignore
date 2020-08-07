@@ -9,3 +9,6 @@
 
 # ouptput files
 out
+
+# ccls caches
+*ccls*
