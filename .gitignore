@@ -12,3 +12,6 @@ out
 
 # ccls caches
 *ccls*
+
+# fuse files
+**/.fuse*
